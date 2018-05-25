@@ -16,8 +16,8 @@ rails g devise:install
 in application.html.erb   
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    
-    
+
+
 rails g devise:views
 
 rails generate devise User
@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
   def resource_name
     :user
   end
- 
+
   def resource
     @resource ||= User.new
   end
@@ -41,7 +41,7 @@ class ApplicationController < ActionController::Base
   def resource_class
     User
   end
- 
+
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
   end
@@ -50,11 +50,11 @@ end
 
 
 simple_form의 input에 required: true를 활성화 하려면
-config/initializers/simple_form.rb에 
+config/initializers/simple_form.rb에
   config.browser_validations = true 해야함.
-  
-  
-shared의 _nav에 로그인과 회원가입이 있어서 그 부분을 다음과 같이 수정하였음
+
+
+shared의 nav에 로그인과 회원가입이 있어서 그 부분을 다음과 같이 수정하였음
 ```ruby
         <div class="tab-content">
           <%-# Login form -%>
@@ -64,6 +64,8 @@ shared의 _nav에 로그인과 회원가입이 있어서 그 부분을 다음과
         </div>
 ```
 각 각의 view에 가보면 구현 상황을 알 수 있음.
+---
+Devise 속성 추가
+rails g migration add_info_to_users tel name addr postcode profile_img verified:boolean celeb_verified:boolean
 
-
-Celebrity - Single Item Page
+Devise에 추가한 속성을 인식시키기 위해 application_controller에 devise_parameter_sanitizer 작업.

@@ -30,11 +30,24 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    
     <%= render "shared/nav" %>
     <%= yield %>
     <%= render "shared/footer" %>
+
   </body>
+  <script>
+      $(document).ready(function(){
+        "<% unless notice.nil? or notice.empty? %>"
+          iziToast.show({
+            title: '알림',
+            titleColor: '#84993A',
+            message: "<%= notice %>",
+            position: "topLeft",
+            messageColor: '#84993A',
+            icon: 'material-icons check',
+            color: '#DFE8BE'
+          })
+        "<% end %>"
+      });
+  </script>
 </html>

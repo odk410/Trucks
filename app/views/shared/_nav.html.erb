@@ -1,6 +1,6 @@
 <!-- Navbar-->
 <!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page.-->
-<header class="navbar navbar-sticky">
+<header class="navbar">
   <!-- Site Branding-->
   <div class="site-branding"><a class="site-logo hidden-xs-down" href="index.html"><%= image_tag "unishop/logo/logo.png", alt: "Unishop" %></a><a class="site-logo logo-sm hidden-sm-up" href="index.html"><%= image_tag "unishop/logo/logo-sm.png" %> alt="Unishop"></a>
     <div class="lang-currency-switcher">
@@ -432,10 +432,19 @@
         </div>
         <% else %>
           <div>
-            <%= link_to '<strong>Sign out</strong>'.html_safe, destroy_user_session_path, method: :delete %>
+            <strong>내 정보<strong>
+            <div class="card  border-primary mb-3">
+              <div class="card-body">
+                <h4 class="card-title"><%= current_user.email%></h4>
+                <p class="card-text"><%= current_user.name %></p>
+                <%= link_to '<strong>Edit</strong>'.html_safe, edit_user_registration_path, class: "btn btn-outline-secondary btn-sm"%>
+                <%= link_to '<strong>Sign out</strong>'.html_safe, destroy_user_session_path, class: "btn btn-outline-secondary btn-sm", method: :delete %>
+              </div>
+            </div>
+
           </div>
         <% end %>
-        
+
       </div>
       <!-- Shopping Cart Section-->
       <div class="toolbar-section" id="cart">
