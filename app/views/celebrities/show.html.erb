@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @celebrity.name %>
+</p>
+
+<p>
+  <strong>Company:</strong>
+  <%= @celebrity.company.name %>
+</p>
+
+<p>
+  <strong>Group:</strong>
+  <%= @celebrity.group.name %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @celebrity.category %>
+</p>
+
+<p>
+  <strong>Color:</strong>
+  <%= @celebrity.color %>
+</p>
+
+<p>
+  <strong>Celeb Wiki</strong>
+  <%= render partial: "celeb_wikis/show", locals:{celeb: @celebrity} %>
+</p>
+
+<%= link_to 'Edit', edit_celebrity_path(@celebrity) %> |
+<%= link_to 'Back', celebrities_path %>

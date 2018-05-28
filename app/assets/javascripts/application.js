@@ -17,6 +17,9 @@
 //= require vendor.min
 //= require card.min
 //= require scripts.min
+//= require summernote/summernote-bs4.min
+//= require summernote/lang/summernote-ko-KR
+//= require summernote-init
 //= require activestorage
 //= require turbolinks
 //= require_tree .

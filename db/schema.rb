@@ -10,7 +10,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_25_025845) do
+ActiveRecord::Schema.define(version: 2018_05_28_104707) do
+
+  create_table "celeb_wikis", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "celebrity_id"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["celebrity_id"], name: "index_celeb_wikis_on_celebrity_id"
+    t.index ["user_id"], name: "index_celeb_wikis_on_user_id"
+  end
+
+  create_table "celebrities", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "company_id"
+    t.integer "group_id"
+    t.string "category", default: "", null: false
+    t.string "color", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_celebrities_on_company_id"
+    t.index ["group_id"], name: "index_celebrities_on_group_id"
+  end
+
+  create_table "companies", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string "name"
+    t.integer "company_id"
+    t.integer "num_member"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_groups_on_company_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -34,6 +71,12 @@ ActiveRecord::Schema.define(version: 2018_05_25_025845) do
     t.boolean "celeb_verified", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "wiki_pic_uploads", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "wiki_pics"
   end
 
 end

@@ -1,0 +1,24 @@
+
+<% if celeb.celeb_wikis.present? %>
+  <p>
+    <strong>수정자:</strong>
+    <%= celeb.celeb_wikis.last.user.email %>
+  </p>
+  <p>
+    <strong>셀럽:</strong>
+    <%= celeb.celeb_wikis.last.celebrity.name %>
+  </p>
+
+  <p>
+    <strong>Content:</strong>
+    <%=raw celeb.celeb_wikis.last.content %>
+  </p>
+
+  <%= link_to '설명 Edit', edit_celeb_wiki_path(celeb.celeb_wikis.last) %> |
+  <%= link_to 'Back', celebrities_path %>
+<% else %>
+  <p>
+    <strong>아직 셀럽의 대한 설명이 작성되지 않았습니다.<strong>
+  </p>
+  <%= link_to '작성하러 가기', g_celeb_wikis_path(celeb.id) %>
+<% end %>

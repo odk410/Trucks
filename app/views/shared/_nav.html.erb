@@ -2,7 +2,7 @@
 <!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page.-->
 <header class="navbar">
   <!-- Site Branding-->
-  <div class="site-branding"><a class="site-logo hidden-xs-down" href="index.html"><%= image_tag "unishop/logo/logo.png", alt: "Unishop" %></a><a class="site-logo logo-sm hidden-sm-up" href="index.html"><%= image_tag "unishop/logo/logo-sm.png" %> alt="Unishop"></a>
+  <div class="site-branding"><%= link_to image_tag('unishop/logo/logo.png', alt: 'Unishop'), root_path, class: "site-logo hidden-xs-down" %><%= link_to image_tag('unishop/logo/logo-sm.png', alt: 'Unishop'), root_path, class: "site-logo logo-sm hidden-sm-up" %>
     <div class="lang-currency-switcher">
       <div class="lang-currency-toggle"><%= image_tag "unishop/flags/GB.png", alt: "English" %><span>USD</span><i class="material-icons arrow_drop_down"></i>
         <ul class="lang-currency-dropdown">

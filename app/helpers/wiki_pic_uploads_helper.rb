@@ -1,0 +1,2 @@
+module WikiPicUploadsHelper
+end

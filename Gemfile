@@ -10,6 +10,8 @@ gem 'simple_form'
 gem 'font-awesome-rails'
 gem 'jquery-migrate-rails'
 gem 'devise'
+gem 'summernote-rails', '~> 0.8.10.0'
+gem 'carrierwave'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'

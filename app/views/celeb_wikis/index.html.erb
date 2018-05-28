@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Celeb Wikis</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Celebrity</th>
+      <th>Content</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @celeb_wikis.each do |celeb_wiki| %>
+      <tr>
+        <td><%= celeb_wiki.user %></td>
+        <td><%= celeb_wiki.celebrity %></td>
+        <td><%= celeb_wiki.content %></td>
+        <td><%= link_to 'Show', celeb_wiki %></td>
+        <td><%= link_to 'Edit', edit_celeb_wiki_path(celeb_wiki) %></td>
+        <td><%= link_to 'Destroy', celeb_wiki, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Celeb Wiki', new_celeb_wiki_path %>

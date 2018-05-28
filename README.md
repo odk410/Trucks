@@ -69,3 +69,6 @@ Devise 속성 추가
 rails g migration add_info_to_users tel name addr postcode profile_img verified:boolean celeb_verified:boolean
 
 Devise에 추가한 속성을 인식시키기 위해 application_controller에 devise_parameter_sanitizer 작업.
+---
+Celebrity 데이터를 추가하기 위해서는 선행적으로 해당 셀러브리티가 어느 회사의 소속인지, 어느 그룹의 소속인지를 정해주어야 한다.
+모르겠다면 기본적으로 무소속 데이터가 있으니 그것으로 설정하도록 하자.
