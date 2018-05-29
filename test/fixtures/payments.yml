@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  imp_uid: MyString
+  pg_provider: MyString
+  amount: 1
+  name: MyString
+  pay_method: MyString
+  status: MyString
+  merchant_uid: MyString
+  user: one
+  cancel_reason: MyString
+  cancelled_at: 1
+  cancel_amount: 1
+  paid_at: 1
+  fail_reason: MyString
+  failed_at: 1
+  pg_tid: MyString
+
+two:
+  imp_uid: MyString
+  pg_provider: MyString
+  amount: 1
+  name: MyString
+  pay_method: MyString
+  status: MyString
+  merchant_uid: MyString
+  user: two
+  cancel_reason: MyString
+  cancelled_at: 1
+  cancel_amount: 1
+  paid_at: 1
+  fail_reason: MyString
+  failed_at: 1
+  pg_tid: MyString

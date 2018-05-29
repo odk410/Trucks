@@ -12,6 +12,9 @@ gem 'jquery-migrate-rails'
 gem 'devise'
 gem 'summernote-rails', '~> 0.8.10.0'
 gem 'carrierwave'
+gem 'httparty'
+gem 'iamport'
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'

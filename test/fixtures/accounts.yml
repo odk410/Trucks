@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  acc_num: MyString
+  master: one
+  master_type: Master
+  balance: 1
+
+two:
+  acc_num: MyString
+  master: two
+  master_type: Master
+  balance: 1

@@ -2,7 +2,7 @@
 <% if celeb.celeb_wikis.present? %>
   <p>
     <strong>수정자:</strong>
-    <%= celeb.celeb_wikis.last.user.email %>
+    <%= celeb.celeb_wikis.last.user.email unless celeb.celeb_wikis.last.user.nil? %>
   </p>
   <p>
     <strong>셀럽:</strong>

@@ -71,4 +71,13 @@ rails g migration add_info_to_users tel name addr postcode profile_img verified:
 Devise에 추가한 속성을 인식시키기 위해 application_controller에 devise_parameter_sanitizer 작업.
 ---
 Celebrity 데이터를 추가하기 위해서는 선행적으로 해당 셀러브리티가 어느 회사의 소속인지, 어느 그룹의 소속인지를 정해주어야 한다.
-모르겠다면 기본적으로 무소속 데이터가 있으니 그것으로 설정하도록 하자.
+모르겠다면 기본적으로 무소속 데이터가 있으니 그것으로 설정하도록 하자.\
+----
+계좌 테이블
+rails g model Account acc_num master:references{polymorphic} balance:integer
+서비스 내 유저, 셀럽, DP가 같은 형식의 Account를 갖도록 하기 위해 master:references{polymorphic}으로 구현
+거래기록 테이블
+rails g model Transaction account:references amount:integer balance:integer send:boolean receive:boolean to_acc_num
+어느계좌가 얼마를 어느계좌에/로부터 보냈다/받았다. 그리고 현재시점의 잔액은 얼마.
+
+rails db:migrate

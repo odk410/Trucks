@@ -437,8 +437,15 @@
               <div class="card-body">
                 <h4 class="card-title"><%= current_user.email%></h4>
                 <p class="card-text"><%= current_user.name %></p>
+                <% unless current_user.account.nil? %>
+                  <p class="card-text"><%= current_user.account.balance %></p>
+                <% else %>
+                  <p class="card-text"><strong>계좌가 없습니다. 계좌 생성하러 가기<strong></p>
+                <% end %>
+
                 <%= link_to '<strong>Edit</strong>'.html_safe, edit_user_registration_path, class: "btn btn-outline-secondary btn-sm"%>
                 <%= link_to '<strong>Sign out</strong>'.html_safe, destroy_user_session_path, class: "btn btn-outline-secondary btn-sm", method: :delete %>
+                <%= link_to '<strong>탈퇴</strong>'.html_safe, user_registration_path, class: "btn btn-outline-secondary btn-sm", method: :delete %>
               </div>
             </div>
 

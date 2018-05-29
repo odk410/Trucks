@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  account: one
+  amount: 1
+  balance: 1
+  send: false
+  receive: false
+  to_acc_num: MyString
+
+two:
+  account: two
+  amount: 1
+  balance: 1
+  send: false
+  receive: false
+  to_acc_num: MyString

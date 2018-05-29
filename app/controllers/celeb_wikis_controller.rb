@@ -10,7 +10,7 @@ class CelebWikisController < ApplicationController
   # GET /celeb_wikis/1
   # GET /celeb_wikis/1.json
   def show
-    redirect_to celebrity_path
+    redirect_to celebrity_path(@celeb_wiki.celebrity)
   end
 
   # GET /celeb_wikis/new
@@ -48,9 +48,12 @@ class CelebWikisController < ApplicationController
 
   # PATCH/PUT /celeb_wikis/1
   # PATCH/PUT /celeb_wikis/1.json
+  # Wiki는 수정작업 시 새로운 레코드 생성
   def update
     respond_to do |format|
-      if @celeb_wiki.update(celeb_wiki_params)
+      @celeb_wiki = CelebWiki.new(celeb_wiki_params)
+
+      if @celeb_wiki.save
         format.html { redirect_to @celeb_wiki, notice: 'Celeb wiki was successfully updated.' }
         format.json { render :show, status: :ok, location: @celeb_wiki }
       else

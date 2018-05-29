@@ -91,8 +91,12 @@ GEM
       railties (>= 3.2, < 6.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    httparty (0.16.2)
+      multi_xml (>= 0.5.2)
     i18n (1.0.1)
       concurrent-ruby (~> 1.0)
+    iamport (0.3.0)
+      httparty
     io-like (0.3.0)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
@@ -123,6 +127,7 @@ GEM
     minitest (5.11.3)
     msgpack (1.2.4)
     multi_json (1.13.1)
+    multi_xml (0.6.0)
     nio4r (2.3.1)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
@@ -232,6 +237,8 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   font-awesome-rails
+  httparty
+  iamport
   jbuilder (~> 2.5)
   jquery-migrate-rails
   jquery-rails

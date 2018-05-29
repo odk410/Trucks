@@ -12,8 +12,8 @@
     <!-- Mobile Specific Meta Tag-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <!-- Favicon and Apple Icons-->
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="icon" type="image/png" href="favicon.png">
+    <%= favicon_link_tag %>
+    <%= favicon_link_tag 'favicon.png', rel: 'icon', type: 'image/png' %>
     <link rel="apple-touch-icon" href="touch-icon-iphone.png">
     <link rel="apple-touch-icon" sizes="152x152" href="touch-icon-ipad.png">
     <link rel="apple-touch-icon" sizes="180x180" href="touch-icon-iphone-retina.png">
@@ -21,12 +21,9 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <!-- Vendor Styles including: Bootstrap, Font Icons, Plugins, etc.-->
-    <!-- <link rel="stylesheet" media="screen" href="<%= stylesheet_path '/unishop/vendor.min.css' %>"> -->
-    <!-- Main Template Styles-->
-    <!-- <link id="mainStyles" rel="stylesheet" media="screen" href="<%= stylesheet_path '/unishop/styles.min.css' %>"> -->
-    <!-- Modernizr-->
-    <!-- <script src="<%= javascript_path '/unishop/modernizr.min.js' %>"></script> -->
+
+    <!-- iamport.payment.js -->
+    <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
   </head>
 
   <body>

@@ -1,0 +1,79 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Imp uid:</strong>
+  <%= @payment.imp_uid %>
+</p>
+
+<p>
+  <strong>Pg provider:</strong>
+  <%= @payment.pg_provider %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @payment.amount %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @payment.name %>
+</p>
+
+<p>
+  <strong>Pay method:</strong>
+  <%= @payment.pay_method %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @payment.status %>
+</p>
+
+<p>
+  <strong>Merchant uid:</strong>
+  <%= @payment.merchant_uid %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @payment.user %>
+</p>
+
+<p>
+  <strong>Cancel reason:</strong>
+  <%= @payment.cancel_reason %>
+</p>
+
+<p>
+  <strong>Cancelled at:</strong>
+  <%= @payment.cancelled_at %>
+</p>
+
+<p>
+  <strong>Cancel amount:</strong>
+  <%= @payment.cancel_amount %>
+</p>
+
+<p>
+  <strong>Paid at:</strong>
+  <%= @payment.paid_at %>
+</p>
+
+<p>
+  <strong>Fail reason:</strong>
+  <%= @payment.fail_reason %>
+</p>
+
+<p>
+  <strong>Failed at:</strong>
+  <%= @payment.failed_at %>
+</p>
+
+<p>
+  <strong>Pg tid:</strong>
+  <%= @payment.pg_tid %>
+</p>
+
+<%= link_to 'Edit', edit_payment_path(@payment) %> |
+<%= link_to 'Back', payments_path %>
