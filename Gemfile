@@ -3,6 +3,15 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.0'
 
+# sns 관리자 ID, KEY보안에 사용
+gem 'figaro'
+# sns_login gem
+gem 'omniauth-google-oauth2'
+gem 'omniauth-kakao', :git => 'git://github.com/hcn1519/omniauth-kakao'
+gem 'omniauth-line'
+gem 'omniauth-twitter', :github => 'arunagw/omniauth-twitter'
+
+
 #added gem
 gem 'jquery-rails'
 # gem 'bootstrap', '~> 4.1.1'

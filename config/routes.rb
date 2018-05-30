@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :users
+  get 'register/info'
+  post 'register/registration'
+  post 'register/registraion_email'
+  devise_for :users, :controllers => { :omniauth_callbacks => 'user/omniauth_callbacks' }
   resources :celebrities
   resources :celeb_wikis do
     collection do
