@@ -7,7 +7,7 @@ class RegisterController < ApplicationController
   end
 
   def registraion_email
-    email = User.find_by(email: params[:email])
+    email = User.find_by(email: params[:user][:email])
     if email.nil?
       @user.update(email: params[:user][:email])
       @user.save

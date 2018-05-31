@@ -32,7 +32,12 @@
           <div class="info-label" data-toggle="tooltip" title="You currently have 622 Reward Points to spend"><i class="material-icons redeem"></i>622 points</div>
         </div>
         <div class="user-info">
-          <div class="user-avatar"><a class="edit-avatar" href="#"><i class="material-icons edit"></i>Edit</a><img src="img/account/user-ava.jpg" alt="User"></div>
+          <div class="user-avatar">
+            <%= current_user.name %>
+            <%= current_user.profile_img.blank? %>
+            <%= image_tag("account/user-ava.jpg", alt: "User") if current_user.profile_img.blank? %>
+            <%= image_tag(current_user.profile_img, alt: "User") unless current_user.profile_img.blank? %>
+          </div>
           <div class="user-data">
             <h5>Daniel Adams</h5><span>Joined February 06, 2017</span>
           </div>
@@ -105,7 +110,10 @@
           <div class="info-label" data-toggle="tooltip" title="You currently have 622 Reward Points to spend"><i class="material-icons redeem"></i>622 points</div>
         </div>
         <div class="user-info">
-          <div class="user-avatar"><a class="edit-avatar" href="#"><i class="material-icons edit"></i>Edit</a><%= image_tag "account/user.png", alt: "User"%></div>
+          <div class="user-avatar">
+            <%= image_tag("account/user.png", alt: "User") if current_user.profile_img.blank? %>
+            <%= image_tag(current_user.profile_img, alt: "User") unless current_user.profile_img.blank? %>
+          </div>
           <div class="user-data">
             <h5><%= resource.name %></h5><span>Joined <%=resource.try(:created_at).try(:strftime,("%B %d, %Y"))%></span>
             <!-- February 06, 2017 -->
@@ -114,7 +122,6 @@
       </aside>
       <nav class="list-group"><a class="list-group-item with-badge" href="account-orders.html"><i class="icon-bag"></i>Orders<span class="badge badge-default badge-pill">6</span></a><a class="list-group-item active" href="account-profile.html"><i class="icon-head"></i>Profile</a><a class="list-group-item" href="account-address.html"><i class="icon-map"></i>Addresses</a><a class="list-group-item with-badge" href="account-wishlist.html"><i class="icon-heart"></i>Wishlist<span class="badge badge-default badge-pill">3</span></a><a class="list-group-item with-badge" href="account-tickets.html"><i class="icon-tag"></i>My Tickets<span class="badge badge-default badge-pill">4</span></a></nav>
     </div>
-
     <div class="col-lg-8">
       <div class="padding-top-2x mt-2 hidden-lg-up"></div>
       <%= simple_form_for(resource, as: resource_name, url: register_registraion_email_path(resource_name), html: { method: :post, class: "row" }) do |f| %>

@@ -25,7 +25,6 @@ class User < ApplicationRecord
 
         # 없다면 새로운 데이터를 생성한다.
         if user.nil?
-
           # Kakao는 email을 제공하지 않기 때문에 따로 처리해야한다.
           if auth.provider == "kakao" || auth.provider == "line" || auth.provider == "twitter"
 

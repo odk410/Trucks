@@ -140,7 +140,7 @@ gem 'omniauth-line'
 # app/models/user.rb
 
 # devise에서 omniauth사용을 위해 :omniauthable 추가
-  devise :database_authenticatable, :registerable,
+devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   has_many :celeb_wiki
@@ -164,9 +164,8 @@ gem 'omniauth-line'
 
         # 없다면 새로운 데이터를 생성한다.
         if user.nil?
-
           # Kakao는 email을 제공하지 않기 때문에 따로 처리해야한다.
-          if auth.provider == "kakao" || auth.provider == "line"
+          if auth.provider == "kakao" || auth.provider == "line" || auth.provider == "twitter"
 
             user = User.new(
               name: auth.info.name,
@@ -208,6 +207,7 @@ gem 'omniauth-line'
   def email_required?
     false
   end
+end
 ```
 
 ```ruby
@@ -251,7 +251,7 @@ class User::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       }
   end
 
-  [:line, :kakao, :google_oauth2].each do |provider|
+  [:twitter, :line, :kakao, :google_oauth2].each do |provider|
     provides_callback_for provider
   end
 
@@ -263,8 +263,8 @@ class User::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     if @user.persisted?
       if @user.email == ""
-        if @identity.provider == "kakao" || @identity.provider == "line"
-          register_registraion_email_path
+        if @identity.provider == "kakao" || @identity.provider == "line" || @identity.provider == "twitter"
+          register_info_path
         end
       else
         root_path
@@ -289,6 +289,30 @@ end
   라인 : `user_line_omniauth_authorize_path`
 
 
+```html
+<!-- app\views\devise\registrations\_new.html.erb -->
 
+<!-- 기존 로그인 버튼을 아래와 같이 변경 -->
+	<a class="media-btn media-facebook" href="#"><i class="socicon-facebook"></i><span>Signup with Facebook</span></a>
+    <%= link_to user_google_oauth2_omniauth_authorize_path, :class => "media-btn media-google" do %> <i class="socicon-googleplus"></i><span>Signup with Google+</span> <%end%>
+    <%= link_to user_twitter_omniauth_authorize_path, :class => "media-btn media-twitter" do %> <i class="socicon-twitter"></i><span>Signup with Twitter</span> <%end%>
+    <%= link_to user_line_omniauth_authorize_path, :class => "media-btn media-line" do %> <i class="fab fa-line"></i><span>Signup with Line</span> <%end%>
+    <%= link_to user_kakao_omniauth_authorize_path, :class => "media-btn media-kakao" do %> <i><%= image_tag "kakaolink_btn_small.png", size: "20"%></i><span style="color: #4d3031;font-weight:550">Signup with Kakao</span> <%end%>
+```
 
+```html
+<!-- app\views\register\info.html.erb -->
+
+<!-- profile_img가 비어있다면 default이미지를 비어있지 않다면 sns에서 받아온 image를 보여준다. -->
+<div class="user-info">
+          <div class="user-avatar">
+            <%= image_tag("account/user.png", alt: "User") if current_user.profile_img.blank? %>
+            <%= image_tag(current_user.profile_img, alt: "User") unless current_user.profile_img.blank? %>
+          </div>
+          <div class="user-data">
+            <h5><%= resource.name %></h5><span>Joined <%=resource.try(:created_at).try(:strftime,("%B %d, %Y"))%></span>
+            <!-- February 06, 2017 -->
+          </div>
+        </div>
+```
 
