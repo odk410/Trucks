@@ -26,6 +26,45 @@
 </p>
 
 <p>
+  <strong>지갑주소:</strong>
+  <%= @celebrity.account.acc_num %>
+</p>
+
+<p>
+  <strong>보유액:</strong>
+  <%= @celebrity.account.balance %>
+</p>
+<p>
+  <strong>거래기록 </strong>
+  <table>
+    <thead>
+      <tr>
+        <th>From</th>
+        <th>Send</th>
+        <th>Receive</th>
+        <th>Amount<th>
+        <th>잔고<th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @trx.each do |t| %>
+        <tr>
+          <td><%= link_to t.target,{:controller => "transactions", :action => "account_inquiry", :acc => t.target} %></td>
+          <td><%= t.remit %></td>
+          <td><%= t.receive %></td>
+          <td><%= t.amount %></td>
+          <td><%= t.balance %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</p>
+<%= link_to '1만원', new_payment_path(amount: 10000, celeb: @celebrity), data: { modal: true } %>
+<%= link_to '5만원', new_payment_path(amount: 50000, celeb: @celebrity), data: { modal: true } %>
+<%= link_to '10만원', new_payment_path(amount: 100000, celeb: @celebrity), data: { modal: true } %>
+
+<p>
   <strong>Celeb Wiki</strong>
   <%= render partial: "celeb_wikis/show", locals:{celeb: @celebrity} %>
 </p>

@@ -4,14 +4,14 @@ one:
   account: one
   amount: 1
   balance: 1
-  send: false
+  remit: false
   receive: false
-  to_acc_num: MyString
+  target: MyString
 
 two:
   account: two
   amount: 1
   balance: 1
-  send: false
+  remit: false
   receive: false
-  to_acc_num: MyString
+  target: MyString

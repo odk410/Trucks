@@ -1,12 +1,6 @@
 class CelebWikisController < ApplicationController
   before_action :set_celeb_wiki, only: [:show, :edit, :update, :destroy]
 
-  # GET /celeb_wikis
-  # GET /celeb_wikis.json
-  def index
-    @celeb_wikis = CelebWiki.all
-  end
-
   # GET /celeb_wikis/1
   # GET /celeb_wikis/1.json
   def show

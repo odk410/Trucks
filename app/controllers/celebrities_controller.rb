@@ -10,6 +10,9 @@ class CelebritiesController < ApplicationController
   # GET /celebrities/1
   # GET /celebrities/1.json
   def show
+    # rails g model Transaction account:references amount:integer balance:integer send:boolean receive:boolean to_acc_num
+    # Client.where("orders_count = ? AND locked = ?", params[:orders], false)
+    @trx = Transaction.where("account_id = ? OR target =?", @celebrity.account, @celebrity.account.acc_num)
   end
 
   # GET /celebrities/new

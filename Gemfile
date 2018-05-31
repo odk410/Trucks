@@ -14,6 +14,7 @@ gem 'summernote-rails', '~> 0.8.10.0'
 gem 'carrierwave'
 gem 'httparty'
 gem 'iamport'
+gem 'rails_admin', '~> 1.3'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
