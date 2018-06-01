@@ -60,9 +60,14 @@
     </tbody>
   </table>
 </p>
-<%= link_to '1만원', new_payment_path(amount: 10000, celeb: @celebrity), data: { modal: true } %>
-<%= link_to '5만원', new_payment_path(amount: 50000, celeb: @celebrity), data: { modal: true } %>
-<%= link_to '10만원', new_payment_path(amount: 100000, celeb: @celebrity), data: { modal: true } %>
+<% if false %>
+<!-- http://#{request.host+request.fullpath} -->
+<!-- http://#{request.host}:#{request.port+request.fullpath} -> 포트번호중요할때 -->
+<% end %>
+
+<%= link_to '1만원', new_payment_path(amount: 10000, celeb: @celebrity, continue: "http://#{request.host}:#{request.port.to_s+request.fullpath}"), data: { modal: true } %>
+<%= link_to '5만원', new_payment_path(amount: 50000, celeb: @celebrity, continue: "http://#{request.host}:#{request.port.to_s+request.fullpath}"), data: { modal: true } %>
+<%= link_to '10만원', new_payment_path(amount: 100000, celeb: @celebrity, continue: "http://#{request.host}:#{request.port.to_s+request.fullpath}"), data: { modal: true } %>
 
 <p>
   <strong>Celeb Wiki</strong>

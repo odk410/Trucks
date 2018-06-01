@@ -1,19 +1,74 @@
 
-<%= simple_form_for(@payment, remote: request.xhr?, html: { data: { modal: true } }) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+<% unless @payment.nil? %>
+  <% if false %>
+            <%= simple_form_for(@payment, remote: request.xhr?, html: { data: { modal: true } }) do |f| %>
+              <%= f.error_notification %>
+              <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-inputs">
-    <%= f.input :pg_provider %>
-    <%= f.input :amount %>
-    <%= f.input :name %>
-    <%= f.input :pay_method %>
-    <%= f.input :status %>
-    <%= f.input :merchant_uid %>
-    <%= f.input :user_id, :as => :hidden %>
-  </div>
+              <div class="form-inputs">
+                <%= f.input :pg_provider %>
+                <%= f.input :amount %>
+                <%= f.input :name %>
+                <%= f.input :pay_method %>
+                <%= f.input :status %>
+                <%= f.input :merchant_uid %>
+                <%= f.input :user_id, :as => :hidden %>
+              </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, class: 'btn-success'%>
-  </div>
+              <div class="form-actions">
+                <%= f.button :submit, class: 'btn-success'%>
+              </div>
+            <% end %>
+  <% end %>
+  <%= simple_form_for(@payment, remote: request.xhr?, html: { data: { modal: true } }) do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+    <div class="form-inputs">
+      <%= f.input :pg_provider %>
+      <%= f.input :amount %>
+      <%= f.input :name %>
+      <%= f.input :pay_method %>
+      <%= f.input :user_id, :as => :hidden %>
+    </div>
+    <div class="form-actions">
+      <%= f.button :submit, '결제', class: 'btn-success', onclick: "requestPay();" %>
+      <%= link_to '<strong>취소</strong>'.html_safe, '#', class: "btn btn-outline-secondary btn-sm"%>
+    </div>
+  <% end %>
+
+<% else %>
+  <strong>로그인이 필요한 서비스입니다.</strong>
+  <%= link_to '<strong>로그인</strong>'.html_safe, new_user_session_path(continue: @continue), class: "btn btn-outline-secondary btn-sm"%>
+  <%= link_to '<strong>취소</strong>'.html_safe, '#', class: "btn btn-outline-secondary btn-sm"%>
 <% end %>
+
+<script>
+function requestPay(){
+    var IMP = window.IMP; // 생략해도 괜찮습니다.
+    IMP.init("imp64777860"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
+
+    IMP.request_pay({
+      pg: "<%= @payment.pg_provider %>",
+      pay_method: "<%= @payment.pay_method %>",
+      merchant_uid: "<%= @payment.merchant_uid %>",
+      name: "<%= @payment.name %>",
+      amount: "<%= @payment.amount %>",
+      buyer_email: "<%= @payment.user.email %>",
+      buyer_name: "<%= @payment.user.name %>",
+      buyer_tel: "<%= @payment.user.tel %>",
+      buyer_addr: "<%= @payment.user.addr %>",
+      buyer_postcode: "<%= @payment.user.postcode %>",
+      m_redirect_url: 'http://localhost:3000/payments/complete'
+    }, function (rsp) {
+      if(rsp.success) {
+        // 결제 성공 시 로직
+        console.log("성공");
+      }else {
+        // 결제 실패 시 로직
+        console.log("실패");
+        $('#error').html(rsp.error_msg);
+      }
+    })
+  }
+</script>

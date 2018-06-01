@@ -145,3 +145,23 @@ product_id: '23'
 Goods를 구매하는 것이라면
 product_type: "Goods"
 proudct_id: "1"  이런식..
+---
+Celebrity의 컬럼에 대표이미지를 두어야 함.
+
+
+Celebrity 화면에서 1,5,10 만원 등 기부/응모를 하기 위해서는 로그인이 필요하다.
+버튼을 누른 시점에 로그인이 되어있지 않으면 로그인을 위한 창이 뜨며 로그인 클릭 시 로그인폼으로 이동한다.
+로그인을 하고나면 다시 버튼을 눌렀던 Celebrity화면으로 돌아가게 된다. (devise session override)
+
+현재 문제점은 위의 경우에 맞게 끔 session controller를 변경했기 때문에
+일반 로그인 시점에서 에러발생. (일반 로그인 시 root_path로 이동)
+`@continue = params[:continue]`  로그인할 때 로그인이 발생한 페이지로 가려면 continue에 이동할 주소를 인자로 전달하면 됨
+
+결제시도 시, paypal결제를 위한 iamport script가 실행된다. paypal은 결제프로세스가 paypal로 넘어간 후 결제 완료 시
+우리 서비스로 redirect 하는 방식이기 때문에 redirect url을 꼭 입력해야 한다.
+현재 localhost:3000/payments/complete로 redirect한다.
+여기서 결제완료 프로세스를 진행하면 되는데 가상머신 네트워크에러 때문에 진행하지 못함.
+
+예상 시나리오
+결제완료 -> Payment 레코드 생성, User의 송금기록 발생, Celebrity의 받는 기록 발생, Celebrity Account의 잔고 업데이트
+---

@@ -15,6 +15,7 @@ class PaymentsController < ApplicationController
 
   # GET /payments/new
   def new
+    @continue = params[:continue]
     if user_signed_in?
       celeb = Celebrity.find(params[:celeb])
       @payment = Payment.new(
@@ -27,10 +28,32 @@ class PaymentsController < ApplicationController
         user_id: current_user.id
       )
       respond_modal_with @payment
+    else
+      # nil 반환
+      respond_modal_with current_user
     end
     # :imp_uid, :pg_provider, :amount, :name, :pay_method, :status, :merchant_uid, :user_id,
     # UtilityHelper::printArgs(params[:amount])
+  end
 
+  def complete
+    # API에 payments 확장기능으로 결제될 내역에 대한 사전정보 등록 & 검증이 있으니 사용할 것
+    begin
+      imp_uid = params[:imp_uid]
+      merchant_uid = params[:merchant_uid]
+
+      # 액세스 토큰 발급은 젬 모듈에서 token 메서드를 알아서 호출함
+      # 결제정보 조회, 가공
+      whole = Iamport.payment(imp_uid)
+      UtilityHelper::printArgs(whole)
+      parsed_imp = whole.parsed_response['response']
+      UtilityHelper::printArgs(parsed_imp)
+      # Payment에 존재하는 속성만 걸러냄
+      imp = parsed_imp.reject{ |key, value| !Payment.attribute_names.include?(key) }
+      status = imp['status']
+      # 결제 금액비교 안함
+      UtilityHelper::printArgs(imp)
+    end
   end
 
   # GET /payments/1/edit
@@ -40,11 +63,11 @@ class PaymentsController < ApplicationController
   # POST /payments
   # POST /payments.json
   def create
-    @payment = Payment.new(payment_params)
-    UtilityHelper::printArgs(payment_params)
-    @payment.save
-    celeb_id = @payment.merchant_uid.split('_')[1]
-    redirect_to celebrity_path(Celebrity.find(celeb_id))
+    # @payment = Payment.new(payment_params)
+    # UtilityHelper::printArgs(payment_params)
+    # @payment.save
+    # celeb_id = @payment.merchant_uid.split('_')[1]
+    # redirect_to celebrity_path(Celebrity.find(celeb_id))
 
     # respond_to do |format|
     #   if @payment.save
