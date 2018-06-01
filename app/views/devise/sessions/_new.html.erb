@@ -30,4 +30,12 @@
     </div>
     <%= f.button :submit, "Log in", class: "btn btn-primary btn-block" %>
   <% end %>
+
+  <!-- SNS 로그인 버튼 -->
+  <a class="media-btn media-facebook" href="#"><i class="socicon-facebook"></i><span>Log in with Facebook</span></a>
+  <%= link_to user_google_oauth2_omniauth_authorize_path, :class => "media-btn media-google" do %> <i class="socicon-googleplus"></i><span>Log in with Google+</span> <%end%>
+  <%= link_to user_twitter_omniauth_authorize_path, :class => "media-btn media-twitter" do %> <i class="socicon-twitter"></i><span>Log in with Twitter</span> <%end%>
+  <%= link_to user_line_omniauth_authorize_path, :class => "media-btn media-line" do %> <i class="fab fa-line"></i><span>Log in with Line</span> <%end%>
+  <%= link_to user_kakao_omniauth_authorize_path, :class => "media-btn media-kakao" do %> <i><%= image_tag "kakaolink_btn_small.png", size: "20"%></i><span style="color: #4d3031;font-weight:550">Log in with Kakao</span> <%end%>
+
 </div>

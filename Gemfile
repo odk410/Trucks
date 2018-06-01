@@ -10,7 +10,9 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-kakao', :git => 'git://github.com/hcn1519/omniauth-kakao'
 gem 'omniauth-line'
 gem 'omniauth-twitter', :github => 'arunagw/omniauth-twitter'
-
+# image upload gem
+gem 'carrierwave'
+gem 'mini_magick'
 
 #added gem
 gem 'jquery-rails'
@@ -67,6 +69,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'rails_db'
 end
 
 group :test do

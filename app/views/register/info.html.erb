@@ -124,9 +124,9 @@
     </div>
     <div class="col-lg-8">
       <div class="padding-top-2x mt-2 hidden-lg-up"></div>
+            
       <%= simple_form_for(resource, as: resource_name, url: register_registraion_email_path(resource_name), html: { method: :post, class: "row" }) do |f| %>
         <%= f.error_notification %>
-
           <div class="col-md-6">
             <div class="form-group">
               <%= f.label "E-mail Address",for: "account-email" %>

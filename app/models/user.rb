@@ -6,6 +6,9 @@ class User < ApplicationRecord
 
   has_many :celeb_wiki
 
+  mount_uploader :profile_img, ImageUploader
+
+
   def self.find_for_oauth(auth, signed_in_resource = nil)
 
     # user와 identity가 nil이 아니라면 받는다
