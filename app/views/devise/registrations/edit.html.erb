@@ -1,10 +1,12 @@
 <script>
+// 사진위 edit버튼을 누르면 f.file_field를 실행시킨다.
   $(function(){
     $(".edit-avatar").on('click', function(e){
       e.preventDefault();
       $(".upload:hidden").trigger('click');
     });
 
+// 사진을 수정하면 바로 사진이 변경된다. 저장은 안됨
     function readURL(input){
       if (input.files && input.files[0]){
         var reader = new FileReader();

@@ -435,8 +435,23 @@
             <strong>내 정보<strong>
             <div class="card  border-primary mb-3">
               <div class="card-body">
-                <h4 class="card-title"><%= current_user.email%></h4>
-                <p class="card-text"><%= current_user.name %></p>
+                <table>
+                  <tr>
+                    <th rowspan="2">
+                      <%= image_tag(current_user.profile_img_url, size:80,alt: "User", class: "img_preview") unless current_user.profile_img.blank? %>
+                      <%= image_tag("account/user.png", size:80, alt: "User", class: "img_preview") if current_user.profile_img.blank? %>
+                    </th>
+                    <td>
+                      <h4 class="card-title"><%= current_user.email%></h4>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="card-text"><%= current_user.name %></p>
+                    </td>
+                  </tr>
+                </table>
+
                 <%= link_to '<strong>Edit</strong>'.html_safe, edit_user_registration_path, class: "btn btn-outline-secondary btn-sm"%>
                 <%= link_to '<strong>Sign out</strong>'.html_safe, destroy_user_session_path, class: "btn btn-outline-secondary btn-sm", method: :delete %>
               </div>
