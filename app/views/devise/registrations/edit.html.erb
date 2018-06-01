@@ -4,7 +4,22 @@
       e.preventDefault();
       $(".upload:hidden").trigger('click');
     });
-  })
+
+    function readURL(input){
+      if (input.files && input.files[0]){
+        var reader = new FileReader();
+        reader.onload = function (e){
+          $('.img_preview').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    $(".upload").change(function(){
+      $(".img_preview").removeClass('hidden');
+      readURL(this);
+    });
+  });
 </script>
 
 <% if false %>
@@ -133,9 +148,10 @@
             <%= f.error_notification %>
         <div class="user-info">
           <div class="user-avatar"><a class="edit-avatar" href=""><i class="material-icons edit"></i>Edit</a>
+            <%= image_tag(current_user.profile_img_url, alt: "User", class: "img_preview") unless current_user.profile_img.blank? %>
+            <%= image_tag("account/user.png", alt: "User", class: "img_preview") if current_user.profile_img.blank? %>
             <%= f.file_field :profile_img, class:"upload" %>
-            <%= image_tag(current_user.profile_img_url, alt: "User") unless current_user.profile_img.blank? %>
-            <%= image_tag("account/user.png", alt: "User") if current_user.profile_img.blank? %>
+            <%= f.hidden_field :addr %>
           </div>
           <div class="user-data">
             <h5><%= resource.name %></h5><span>Joined <%=resource.created_at.strftime("%B %d, %Y")%></span>
