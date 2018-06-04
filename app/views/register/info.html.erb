@@ -1,0 +1,182 @@
+
+<% if false %>
+<%= simple_form_for(resource, as: resource_name, url: register_registraion_email_path(resource_name), html: { method: :post }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :email, required: true, autofocus: true %>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+    <% end %>
+
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Update" %>
+  </div>
+<% end %>
+
+<h3>Cancel my account</h3>
+
+<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+
+<%= link_to "Back", :back %>
+
+<!-- Page Content-->
+<div class="container padding-bottom-3x mb-2">
+  <div class="row">
+    <div class="col-lg-4">
+      <aside class="user-info-wrapper">
+        <div class="user-cover" style="background-image: url(img/account/user-cover-img.jpg);">
+          <div class="info-label" data-toggle="tooltip" title="You currently have 622 Reward Points to spend"><i class="material-icons redeem"></i>622 points</div>
+        </div>
+        <div class="user-info">
+          <div class="user-avatar">
+            <%= current_user.name %>
+            <%= current_user.profile_img.blank? %>
+            <%= image_tag("account/user-ava.jpg", alt: "User") if current_user.profile_img.blank? %>
+            <%= image_tag(current_user.profile_img, alt: "User") unless current_user.profile_img.blank? %>
+          </div>
+          <div class="user-data">
+            <h5>Daniel Adams</h5><span>Joined February 06, 2017</span>
+          </div>
+        </div>
+      </aside>
+      <nav class="list-group"><a class="list-group-item with-badge" href="account-orders.html"><i class="icon-bag"></i>Orders<span class="badge badge-default badge-pill">6</span></a><a class="list-group-item active" href="account-profile.html"><i class="icon-head"></i>Profile</a><a class="list-group-item" href="account-address.html"><i class="icon-map"></i>Addresses</a><a class="list-group-item with-badge" href="account-wishlist.html"><i class="icon-heart"></i>Wishlist<span class="badge badge-default badge-pill">3</span></a><a class="list-group-item with-badge" href="account-tickets.html"><i class="icon-tag"></i>My Tickets<span class="badge badge-default badge-pill">4</span></a></nav>
+    </div>
+    <div class="col-lg-8">
+      <div class="padding-top-2x mt-2 hidden-lg-up"></div>
+      <form class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="account-fn">First Name</label>
+            <input class="form-control" type="text" id="account-fn" value="Daniel" required>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="account-ln">Last Name</label>
+            <input class="form-control" type="text" id="account-ln" value="Adams" required>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="account-email">E-mail Address</label>
+            <input class="form-control" type="email" id="account-email" value="daniel.adams@mail.com" disabled>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="account-phone">Phone Number</label>
+            <input class="form-control" type="text" id="account-phone" value="+7(805) 348 95 72" required>
+          </div>
+        </div>
+        <div class="col-12">
+          <hr class="mt-2 mb-3">
+          <div class="d-flex flex-wrap justify-content-between align-items-center">
+            <div class="custom-control custom-checkbox d-block">
+              <input class="custom-control-input" type="checkbox" id="subscribe_me" checked>
+              <label class="custom-control-label" for="subscribe_me">Subscribe me to Newsletter</label>
+            </div>
+            <button class="btn btn-primary margin-right-none" type="button" data-toast data-toast-position="topRight" data-toast-type="success" data-toast-icon="icon-circle-check" data-toast-title="Success!" data-toast-message="Your profile updated successfuly.">Update Profile</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<% end %>
+<!-- Page Title-->
+<div class="page-title">
+  <div class="container">
+    <h1>회원정보 수정</h1>
+    <ul class="breadcrumbs">
+      <li><a href="index.html">Home</a>
+      </li>
+      <li class="separator">&nbsp;/&nbsp;</li>
+      <li><a href="account-orders.html">Account</a>
+      </li>
+      <li class="separator">&nbsp;/&nbsp;</li>
+      <li>My Profile</li>
+    </ul>
+  </div>
+</div>
+<div class="container padding-bottom-3x mb-2">
+  <div class="row">
+    <div class="col-lg-4">
+      <aside class="user-info-wrapper">
+        <div class="user-cover" style="background-image: url(<%= asset_path 'account/user-cover-img.jpg'%>);">
+          <div class="info-label" data-toggle="tooltip" title="You currently have 622 Reward Points to spend"><i class="material-icons redeem"></i>622 points</div>
+        </div>
+        <div class="user-info">
+          <div class="user-avatar">
+            <%= image_tag("account/user.png", alt: "User") if current_user.profile_img.blank? %>
+            <%= image_tag(current_user.profile_img, alt: "User") unless current_user.profile_img.blank? %>
+          </div>
+          <div class="user-data">
+            <h5><%= resource.name %></h5><span>Joined <%=resource.try(:created_at).try(:strftime,("%B %d, %Y"))%></span>
+            <!-- February 06, 2017 -->
+          </div>
+        </div>
+      </aside>
+      <nav class="list-group"><a class="list-group-item with-badge" href="account-orders.html"><i class="icon-bag"></i>Orders<span class="badge badge-default badge-pill">6</span></a><a class="list-group-item active" href="account-profile.html"><i class="icon-head"></i>Profile</a><a class="list-group-item" href="account-address.html"><i class="icon-map"></i>Addresses</a><a class="list-group-item with-badge" href="account-wishlist.html"><i class="icon-heart"></i>Wishlist<span class="badge badge-default badge-pill">3</span></a><a class="list-group-item with-badge" href="account-tickets.html"><i class="icon-tag"></i>My Tickets<span class="badge badge-default badge-pill">4</span></a></nav>
+    </div>
+    <div class="col-lg-8">
+      <div class="padding-top-2x mt-2 hidden-lg-up"></div>
+            
+      <%= simple_form_for(resource, as: resource_name, url: register_registraion_email_path(resource_name), html: { method: :post, class: "row" }) do |f| %>
+        <%= f.error_notification %>
+          <div class="col-md-6">
+            <div class="form-group">
+              <%= f.label "E-mail Address",for: "account-email" %>
+              <%= f.input :email, required: true, autofocus: true, label: false, input_html: {class: "form-control", id: "account-email"} %>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <%= f.label "Name", for: "account-name"%>
+              <%= f.input :name, label: false, input_html: {class: "form-control", id: "account-name", value: current_user.name} %>
+            </div>
+          </div>
+
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+          <% end %>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <%= f.label "Tel", for: "account-tel"%>
+              <%= f.input :tel, label: false, input_html: {class: "form-control", id: "account-tel"} %>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <%= f.label "Postcode", for: "account-postcode"%>
+              <%= f.input :postcode, label: false, input_html: {class: "form-control", id: "account-postcode"} %>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <%= f.label "Addrress", for: "account-addr"%>
+              <%= f.input :addr, label: false, input_html: {class: "form-control", id: "account-addr"} %>
+            </div>
+          </div>
+          <div class="col-12">
+            <hr class="mt-2 mb-3">
+            <div class="d-flex flex-wrap justify-content-between align-items-center">
+              <div class="custom-control custom-checkbox d-block"></div>
+              <%= f.button :submit, "Update", class: "btn btn-primary margin-right-none", input_html: {'data-toast': '', 'data-toast-position': "topRight", 'data-toast-type': "success", 'data-toast-icon': "icon-circle-check", 'data-toast-title': "Success!", 'data-toast-message': "Your profile updated successfuly."} %>
+            </div>
+          </div>
+
+      <% end %>
+
+      <h3>Cancel my account</h3>
+
+      <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+
+      <%= link_to "Back", :back %>
+    </div>
+  </div>
+</div>

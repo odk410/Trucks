@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Video Posts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Content</th>
+      <th>Video</th>
+      <th>Video location</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @video_posts.each do |video_post| %>
+      <tr>
+        <td><%= video_post.title %></td>        
+        <td><%= link_to 'Show', video_post %></td>
+        <td><%= link_to 'Edit', edit_video_post_path(video_post) %></td>
+        <td><%= link_to 'Destroy', video_post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Video Post', new_video_post_path %>

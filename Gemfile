@@ -3,6 +3,21 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.0'
 
+# sns 관리자 ID, KEY보안에 사용
+gem 'figaro'
+# sns_login gem
+gem 'omniauth-google-oauth2'
+gem 'omniauth-kakao', :git => 'git://github.com/hcn1519/omniauth-kakao'
+gem 'omniauth-line'
+gem 'omniauth-twitter', :github => 'arunagw/omniauth-twitter'
+# image upload gem
+gem 'carrierwave'
+gem 'mini_magick'
+# rails admin
+gem 'rails_admin', '~> 1.3'
+# pundit
+gem "pundit"
+
 #added gem
 gem 'jquery-rails'
 # gem 'bootstrap', '~> 4.1.1'
@@ -62,6 +77,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'rails_db'
 end
 
 group :test do

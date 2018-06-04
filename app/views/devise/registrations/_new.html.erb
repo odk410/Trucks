@@ -32,7 +32,12 @@
       <input class="form-control" type="password" placeholder="Confirm Password" required>
     </div>
     <button class="btn btn-primary btn-block" type="submit">Sign Up</button>
-    <p class="text-muted text-sm mt-4">OR sign up with your social account</p><a class="media-btn media-facebook" href="#"><i class="socicon-facebook"></i><span>Signup with Facebook</span></a><a class="media-btn media-google" href="#"><i class="socicon-googleplus"></i><span>Signup with Google+</span></a><a class="media-btn media-twitter" href="#"><i class="socicon-twitter"></i><span>Signup with Twitter</span></a>
+    <p class="text-muted text-sm mt-4">OR sign up with your social account</p>
+    <a class="media-btn media-facebook" href="#"><i class="socicon-facebook"></i><span>Signup with Facebook</span></a>
+    <%= link_to user_google_oauth2_omniauth_authorize_path, :class => "media-btn media-google" do %> <i class="socicon-googleplus"></i><span>Signup with Google+</span> <%end%>
+    <%= link_to user_twitter_omniauth_authorize_path, :class => "media-btn media-twitter" do %> <i class="socicon-twitter"></i><span>Signup with Twitter</span> <%end%>
+    <%= link_to user_line_omniauth_authorize_path, :class => "media-btn media-line" do %> <i class="fab fa-line"></i><span>Signup with Line</span> <%end%>
+    <%= link_to user_kakao_omniauth_authorize_path, :class => "media-btn media-kakao" do %> <i><%= image_tag "kakaolink_btn_small.png", size: "20"%></i><span style="color: #4d3031;font-weight:550">Signup with Kakao</span> <%end%>
   </form>
 </div>
 <% end %>
@@ -67,6 +72,11 @@
     <div class="form-actions">
       <%= f.button :submit, "Sign up", class: "btn btn-primary btn-block" %>
     </div>
-    <p class="text-muted text-sm mt-4">OR sign up with your social account</p><a class="media-btn media-facebook" href="#"><i class="socicon-facebook"></i><span>Signup with Facebook</span></a><a class="media-btn media-google" href="#"><i class="socicon-googleplus"></i><span>Signup with Google+</span></a><a class="media-btn media-twitter" href="#"><i class="socicon-twitter"></i><span>Signup with Twitter</span></a>
+    <p class="text-muted text-sm mt-4">OR sign up with your social account</p>
+    <a class="media-btn media-facebook" href="#"><i class="socicon-facebook"></i><span>Signup with Facebook</span></a>
+    <%= link_to user_google_oauth2_omniauth_authorize_path, :class => "media-btn media-google" do %> <i class="socicon-googleplus"></i><span>Signup with Google+</span> <%end%>
+    <%= link_to user_twitter_omniauth_authorize_path, :class => "media-btn media-twitter" do %> <i class="socicon-twitter"></i><span>Signup with Twitter</span> <%end%>
+    <%= link_to user_line_omniauth_authorize_path, :class => "media-btn media-line" do %> <i class="fab fa-line"></i><span>Signup with Line</span> <%end%>
+    <%= link_to user_kakao_omniauth_authorize_path, :class => "media-btn media-kakao" do %> <i><%= image_tag "kakaolink_btn_small.png", size: "20"%></i><span style="color: #4d3031;font-weight:550">Signup with Kakao</span> <%end%>
   <% end %>
 </div>

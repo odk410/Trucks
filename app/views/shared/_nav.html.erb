@@ -365,6 +365,12 @@
                   <li><a href="components/widgets.html">Widgets</a></li>
               </ul>
             </li>
+            <li class="has-children"><span><a href= "/"><span>Content</span></a><span class="sub-menu-toggle"></span></span>
+              <ul class="slideable-submenu">
+                  <li> <%= link_to "클라우드 펀딩", celebrities_path %> </li>
+                  <li> <%= link_to "동영상 게시판", video_posts_path %> </li>
+              </ul>
+            </li>
           </ul>
         </nav>
       </div>
@@ -438,6 +444,22 @@
                 <h4 class="card-title"><%= current_user.email%></h4>
                 <p class="card-text"><%= current_user.name %></p>
                 <%= link_to '내 거래기록',{:controller => "transactions", :action => "account_inquiry", :acc => current_user.account.acc_num}, class: "btn btn-outline-secondary btn-sm"%>
+                <table>
+                  <tr>
+                    <th rowspan="2">
+                      <%= image_tag(current_user.profile_img_url, size:80,alt: "User", class: "img_preview") unless current_user.profile_img.blank? %>
+                      <%= image_tag("account/user.png", size:500, alt: "User", class: "img_preview") if current_user.profile_img.blank? %>
+                    </th>
+                    <td>
+                      <h4 class="card-title"><%= current_user.email%></h4>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="card-text"><%= current_user.name %></p>
+                    </td>
+                  </tr>
+                </table>
                 <%= link_to '<strong>Edit</strong>'.html_safe, edit_user_registration_path, class: "btn btn-outline-secondary btn-sm"%>
                 <%= link_to '<strong>Sign out</strong>'.html_safe, destroy_user_session_path, class: "btn btn-outline-secondary btn-sm", method: :delete %>
                 <%= link_to '<strong>탈퇴</strong>'.html_safe, user_registration_path, class: "btn btn-outline-secondary btn-sm", method: :delete %>

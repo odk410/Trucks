@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include Pundit
+  protect_from_forgery
   helper_method :resource_name, :resource, :devise_mapping, :resource_class
   before_action :configure_permitted_parameters, if: :devise_controller?
 
@@ -38,7 +40,7 @@ class ApplicationController < ActionController::Base
 
   protected
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :addr, :tel, :postcode])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :addr, :tel, :postcode])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :addr, :tel, :postcode, :profile_img])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :addr, :tel, :postcode, :email, :profile_img])
   end
 end
