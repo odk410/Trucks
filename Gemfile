@@ -13,6 +13,10 @@ gem 'omniauth-twitter', :github => 'arunagw/omniauth-twitter'
 # image upload gem
 gem 'carrierwave'
 gem 'mini_magick'
+# rails admin
+gem 'rails_admin', '~> 1.3'
+# pundit
+gem "pundit"
 
 #added gem
 gem 'jquery-rails'

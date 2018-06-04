@@ -62,9 +62,9 @@ gem 'omniauth-line'
 
 - 트위터 Developers : https://apps.twitter.com/
 
-  > 참고사항 
+  > 참고사항
   >
-  > 트위터는 http://localhost:3000 이 안된다. 
+  > 트위터는 http://localhost:3000 이 안된다.
   >
   > 때문에 http://127.0.0.1:3000을 사용해야 한다.
 
@@ -315,4 +315,3 @@ end
           </div>
         </div>
 ```
-

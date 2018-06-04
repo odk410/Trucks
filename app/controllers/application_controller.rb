@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include Pundit
+  protect_from_forgery
   helper_method :resource_name, :resource, :devise_mapping, :resource_class
   before_action :configure_permitted_parameters, if: :devise_controller?
 

@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @video_post.title %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <% if @video_post.video_url.present? %>
+    <% if @video_post.video_location == 0 %>
+      <%= raw "<video controls='controls' src='"+@video_post.video_url.to_s+"' width='400' height='200'></video>" + @video_post.content %>
+    <% else %>
+      <%= raw @video_post.content + "<video controls='controls' src='"+@video_post.video_url.to_s+"' width='400' height='200'></video>" %>
+    <% end %>
+  <%else%>
+    <%= raw @video_post.content %>
+  <% end %>
+
+</p>
+
+<%= link_to 'Edit', edit_video_post_path(@video_post) %> |
+<%= link_to 'Back', video_posts_path %>

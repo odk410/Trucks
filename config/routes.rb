@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+  resources :video_posts
   get 'register/info'
   post 'register/registration'
   post 'register/registraion_email'
   devise_for :users, :controllers => { :omniauth_callbacks => 'user/omniauth_callbacks' }
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :celebrities
   resources :celeb_wikis do
     collection do
